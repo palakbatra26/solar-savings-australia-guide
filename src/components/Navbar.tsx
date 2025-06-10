@@ -6,6 +6,10 @@ import { Button } from '@/components/ui/button';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleGetQuote = () => {
+    window.open('https://www.solarchoice.net.au/', '_blank');
+  };
+
   const navItems = [
     { name: 'Home', href: '#home', icon: Sun },
     { name: 'Rebates', href: '#rebates', icon: DollarSign },
@@ -34,7 +38,7 @@ const Navbar = () => {
                 <span>{item.name}</span>
               </a>
             ))}
-            <Button className="solar-gradient text-white hover:opacity-90">
+            <Button className="solar-gradient text-white hover:opacity-90" onClick={handleGetQuote}>
               Get Quote
             </Button>
           </div>
@@ -62,7 +66,7 @@ const Navbar = () => {
                 <span>{item.name}</span>
               </a>
             ))}
-            <Button className="w-full mt-4 solar-gradient text-white">
+            <Button className="w-full mt-4 solar-gradient text-white" onClick={handleGetQuote}>
               Get Quote
             </Button>
           </div>

@@ -1,8 +1,19 @@
-
 import React from 'react';
-import { Sun, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Youtube } from 'lucide-react';
+import { Sun, Phone, Mail, MapPin, Facebook, Linkedin, Youtube } from 'lucide-react';
 
 const Footer = () => {
+  const handleFacebookClick = () => {
+    window.open('https://www.facebook.com/solarchoice', '_blank');
+  };
+
+  const handleLinkedInClick = () => {
+    window.open('https://www.linkedin.com/company/solar-choice', '_blank');
+  };
+
+  const handleYouTubeClick = () => {
+    window.open('https://www.youtube.com/c/SolarChoice', '_blank');
+  };
+
   return (
     <footer className="bg-foreground text-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -17,10 +28,18 @@ const Footer = () => {
               Helping homeowners and businesses save thousands on solar installations.
             </p>
             <div className="flex space-x-4">
-              <Facebook className="h-5 w-5 opacity-75 hover:opacity-100 cursor-pointer" />
-              <Twitter className="h-5 w-5 opacity-75 hover:opacity-100 cursor-pointer" />
-              <Linkedin className="h-5 w-5 opacity-75 hover:opacity-100 cursor-pointer" />
-              <Youtube className="h-5 w-5 opacity-75 hover:opacity-100 cursor-pointer" />
+              <Facebook 
+                className="h-5 w-5 opacity-75 hover:opacity-100 cursor-pointer" 
+                onClick={handleFacebookClick}
+              />
+              <Linkedin 
+                className="h-5 w-5 opacity-75 hover:opacity-100 cursor-pointer"
+                onClick={handleLinkedInClick}
+              />
+              <Youtube 
+                className="h-5 w-5 opacity-75 hover:opacity-100 cursor-pointer" 
+                onClick={handleYouTubeClick}
+              />
             </div>
           </div>
 
