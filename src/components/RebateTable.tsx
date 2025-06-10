@@ -4,11 +4,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, MapPin, DollarSign, Calendar, Users } from 'lucide-react';
+import { Search, MapPin, DollarSign, Calendar, Users, ExternalLink } from 'lucide-react';
 
 const RebateTable = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterLocation, setFilterLocation] = useState('All');
+
+  const handleGetQuotes = () => {
+    window.open('https://www.solarchoice.net.au/', '_blank');
+  };
+
+  const handleLearnMore = (programName: string) => {
+    // Scroll to state rebates section for more details
+    const element = document.getElementById('states');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const rebatePrograms = [
     {
@@ -166,7 +178,7 @@ const RebateTable = () => {
                       </Badge>
                     </div>
                     <p className="text-muted-foreground text-sm mb-3">{program.brief}</p>
-                    <div className="flex items-center gap-4 text-sm">
+                    <div className="flex items-center gap-4 text-sm mb-3">
                       <div className="flex items-center gap-1">
                         <MapPin className="h-4 w-4 text-primary" />
                         <span className="font-medium">{program.location}</span>
@@ -176,6 +188,17 @@ const RebateTable = () => {
                         <span>{program.type}</span>
                       </div>
                     </div>
+                    {program.status === 'Active' && (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleLearnMore(program.program)}
+                        className="text-primary border-primary hover:bg-primary hover:text-white"
+                      >
+                        Learn More
+                        <ExternalLink className="ml-2 h-3 w-3" />
+                      </Button>
+                    )}
                   </div>
                   
                   <div>
@@ -200,7 +223,7 @@ const RebateTable = () => {
         </div>
 
         <div className="text-center mt-8">
-          <Button size="lg" className="solar-gradient text-white">
+          <Button size="lg" className="solar-gradient text-white" onClick={handleGetQuotes}>
             Compare Quotes from 7 Installers
           </Button>
         </div>

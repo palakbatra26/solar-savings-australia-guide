@@ -4,6 +4,18 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, TrendingDown, Zap, Shield } from 'lucide-react';
 
 const Hero = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleGetQuote = () => {
+    // You can replace this with actual quote form or external service
+    window.open('https://www.solarchoice.net.au/', '_blank');
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-50"></div>
@@ -29,11 +41,16 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button size="lg" className="solar-gradient text-white hover:opacity-90">
+              <Button size="lg" className="solar-gradient text-white hover:opacity-90" onClick={handleGetQuote}>
                 Compare Quotes Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary hover:text-white"
+                onClick={() => scrollToSection('calculator')}
+              >
                 Calculate Savings
               </Button>
             </div>

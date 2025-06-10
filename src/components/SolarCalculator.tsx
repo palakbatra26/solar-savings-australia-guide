@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calculator, TrendingUp, Zap, DollarSign, Calendar } from 'lucide-react';
+import { Calculator, TrendingUp, Zap, DollarSign, Calendar, ExternalLink } from 'lucide-react';
 
 const SolarCalculator = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +15,10 @@ const SolarCalculator = () => {
   });
   
   const [results, setResults] = useState(null);
+
+  const handleGetDetailedQuote = () => {
+    window.open('https://www.solarchoice.net.au/', '_blank');
+  };
 
   const calculateSavings = () => {
     const systemSize = parseFloat(formData.systemSize) || 0;
@@ -177,8 +180,9 @@ const SolarCalculator = () => {
                   <p className="text-3xl font-bold text-primary">${results.lifetimeSavings.toLocaleString()}</p>
                 </div>
 
-                <Button className="w-full solar-gradient text-white">
+                <Button className="w-full solar-gradient text-white" onClick={handleGetDetailedQuote}>
                   Get Detailed Quote
+                  <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </CardContent>
             </Card>

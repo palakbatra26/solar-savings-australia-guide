@@ -1,13 +1,34 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { MapPin, DollarSign, Battery, Zap, Home, Building } from 'lucide-react';
+import { MapPin, DollarSign, Battery, Zap, Home, Building, ExternalLink } from 'lucide-react';
 
 const StateRebates = () => {
   const [selectedState, setSelectedState] = useState('NSW');
+
+  const handleLearnMore = (programName: string, state: string) => {
+    // You can customize this to link to specific state government pages
+    const stateUrls = {
+      'NSW': 'https://www.energy.nsw.gov.au/renewables',
+      'VIC': 'https://www.solar.vic.gov.au/',
+      'QLD': 'https://www.epw.qld.gov.au/about/initiatives/solar',
+      'SA': 'https://www.sa.gov.au/topics/energy-and-environment/energy-supply/solar-energy',
+      'ACT': 'https://www.environment.act.gov.au/energy/renewable-energy',
+      'WA': 'https://www.wa.gov.au/organisation/energy-policy-wa',
+      'NT': 'https://denr.nt.gov.au/energy'
+    };
+    
+    const url = stateUrls[state as keyof typeof stateUrls];
+    if (url) {
+      window.open(url, '_blank');
+    }
+  };
+
+  const handleGetQuotes = () => {
+    window.open('https://www.solarchoice.net.au/', '_blank');
+  };
 
   const stateData = {
     NSW: {
@@ -260,8 +281,12 @@ const StateRebates = () => {
                           </div>
                           
                           {program.status === 'Active' && (
-                            <Button className="w-full solar-gradient text-white">
+                            <Button 
+                              className="w-full solar-gradient text-white"
+                              onClick={() => handleLearnMore(program.name, stateCode)}
+                            >
                               Learn More
+                              <ExternalLink className="ml-2 h-4 w-4" />
                             </Button>
                           )}
                         </div>
@@ -283,7 +308,7 @@ const StateRebates = () => {
         </Tabs>
 
         <div className="text-center mt-12">
-          <Button size="lg" className="solar-gradient text-white">
+          <Button size="lg" className="solar-gradient text-white" onClick={handleGetQuotes}>
             Compare Quotes from Up to 7 Installers
           </Button>
         </div>
