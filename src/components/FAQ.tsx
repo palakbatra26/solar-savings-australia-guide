@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -6,6 +5,10 @@ import { Button } from '@/components/ui/button';
 import { HelpCircle, ArrowRight } from 'lucide-react';
 
 const FAQ = () => {
+  const handleContactExpert = () => {
+    window.open('https://www.solarchoice.net.au/contact/', '_blank');
+  };
+
   const faqs = [
     {
       question: "What is the difference between a solar rebate and a solar incentive?",
@@ -88,7 +91,7 @@ const FAQ = () => {
           <p className="text-muted-foreground mb-6">
             Still have questions? Our solar experts are here to help.
           </p>
-          <Button size="lg" className="solar-gradient text-white">
+          <Button size="lg" className="solar-gradient text-white" onClick={handleContactExpert}>
             Contact Solar Expert
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
